@@ -1,4 +1,4 @@
-## #Testing new appraoches to app
+## #Testing new approaches to app
 
 Made a resuable component to create the tabular form of input buttons using 'array', intead of HTML. 'array' contains all the values to be initialized by the component
 
