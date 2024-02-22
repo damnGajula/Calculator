@@ -1,4 +1,4 @@
-## #Testing new approaches to app
+# Testing new approaches to app
 
 Made a resuable component to create the tabular form of input buttons using ' array ', intead of HTML. ' array ' contains all the values to be initialized by the component
 
@@ -7,8 +7,8 @@ Made a resuable component to create the tabular form of input buttons using ' ar
 
 
 Iterating through ' array ' for ' length ' 4 to create input buttons for a matrix of 4x4, with ' key ' as ' rowIndex ' and ' colIndex '
-
-### Using Array for input, instead of string
+-------
+## Using Array for input, instead of string
 
 <img width="445" alt="setResult(calculationResult);" src="https://github.com/damnGajula/Calculator/assets/47356511/ceaf1eb9-b4a1-4033-8649-03ad1303c74d">
 
