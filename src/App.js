@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 
 const Calculator = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState([]);
   const [result, setResult] = useState('');
   const [history, setHistory] = useState([]);
 
   const handleButtonPress = (value) => {
     if (value === '=') {
       try {
-        const newResult = eval(input);
+        const expression = input.join('');
+        const newResult = eval(expression);
         setResult(newResult);
-        setHistory((prevHistory) => [...prevHistory, `${input} = ${newResult}`]);
-        setInput(''); // Reset input when showing result
+        setHistory(prevHistory => [...prevHistory, `${expression} = ${newResult}`]);
+        setInput([]); // Reset input when showing result
       } catch (error) {
         setResult('Error');
         setInput('');
       }
     } else if (value === 'C') {
-      setInput('');
+      setInput([]);
       setResult('');
     } else {
-      setInput((prevInput) => prevInput + value);
+      setInput(prevInput => [...prevInput, value]);
     }
   };
 
@@ -38,7 +39,7 @@ const Calculator = () => {
         <tbody>
           <tr>
             <td colSpan="4">
-              <input type="text" value={input} readOnly />
+              <input type="text" value={input.join('')} readOnly />
             </td>
           </tr>
           {buttonValues.map((row, rowIndex) => (
