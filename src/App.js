@@ -1,25 +1,82 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+const Calculator = () => {
+  const [expression, setExpression] = useState('');
+  const [result, setResult] = useState(null);
+  const [history, setHistory] = useState([]);
+
+  const handleButtonClick = (value) => {
+    setExpression((prevExpression) => prevExpression + value);
+  };
+
+  const handleClear = () => {
+    setExpression('');
+    setResult(null);
+  };
+
+  const handleEvaluate = () => {
+    try {
+      const calculationResult = eval(expression);
+      setResult(calculationResult);
+      setHistory([...history, calculationResult]);
+      setExpression('');
+    } catch (error) {
+      setResult('Error');
+    }
+  };
+
+  const buttons = [
+    '1', '2', '3', '+',
+    '4', '5', '6', '-',
+    '7', '8', '9', '*',
+    '0', 'C', '=', '/'
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Calculator</h2>
+      <div>
+        <input type="text" value={expression} readOnly />
+      </div>
+      <div>
+        <table>
+          <tbody>
+            {Array.from({ length: 4 }).map((_, rowIndex) => (
+              <tr key={rowIndex}>
+                {Array.from({ length: 4 }).map((_, colIndex) => {
+                  const buttonValue = buttons[rowIndex * 4 + colIndex];
+                  return (
+                    <td key={colIndex}>
+                      <button onClick={() => handleButtonClick(buttonValue)}>
+                        {buttonValue}
+                      </button>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {result !== null && <p>Result: {result}</p>}
+
+      <h3>History</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          {history.map((item, index) => (
+            <tr key={index}>
+              <td>{item}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
-export default App;
+export default Calculator;
