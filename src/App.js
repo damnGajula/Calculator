@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 
 const Calculator = () => {
-  const [expression, setExpression] = useState('');
+  const [expression, setExpression] = useState([]);
   const [result, setResult] = useState(null);
   const [history, setHistory] = useState([]);
 
   const handleButtonClick = (value) => {
-    setExpression((prevExpression) => prevExpression + value);
+    setExpression((prevExpression) => [...prevExpression, value]);
   };
 
   const handleClear = () => {
-    setExpression('');
+    setExpression([]);
     setResult(null);
   };
 
   const handleEvaluate = () => {
     try {
-      const calculationResult = eval(expression);
+      const calculationResult = eval(expression.join(''));
       setResult(calculationResult);
       setHistory([...history, calculationResult]);
-      setExpression('');
     } catch (error) {
       setResult('Error');
     }
@@ -36,7 +35,7 @@ const Calculator = () => {
     <div>
       <h2>Calculator</h2>
       <div>
-        <input type="text" value={expression} readOnly />
+        <input type="text" value={expression.join('')} readOnly />
       </div>
       <div>
         <table>

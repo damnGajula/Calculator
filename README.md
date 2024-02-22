@@ -9,3 +9,8 @@ Made a resuable component to create the tabular form of input buttons using 'arr
 Iterating through 'array' for 'length' 4 to create input buttons for a matrix of 4x4, with 'key' as 'rowIndex' and 'colIndex'
 
 ##Using Array for input, instead of string
+
+<img width="445" alt="setResult(calculationResult);" src="https://github.com/damnGajula/Calculator/assets/47356511/ceaf1eb9-b4a1-4033-8649-03ad1303c74d">
+
+
+<img width="445" alt="Screenshot 2024-02-22 at 4 19 17 PM" src="https://github.com/damnGajula/Calculator/assets/47356511/4eeb2605-46f0-4bf0-aa07-649a58339ea8">
