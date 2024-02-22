@@ -12,7 +12,7 @@ const Calculator = () => {
         const newResult = eval(expression);
         setResult(newResult);
         setHistory(prevHistory => [...prevHistory, `${expression} = ${newResult}`]);
-        setInput([]); // Reset input when showing result
+        setInput([]);
       } catch (error) {
         setResult('Error');
         setInput('');
@@ -55,7 +55,7 @@ const Calculator = () => {
           ))}
         </tbody>
       </table>
-      {result && <div>{result}</div>} {/* Only display result if it's not empty */}
+      {result && <div>{result}</div>}
       <div>
         <h2>History</h2>
         <ul>
