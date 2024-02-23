@@ -12,6 +12,12 @@ The `UserList` component performs the following tasks:
 
 ## Changes Made
 
+### Cause of Api calling twice
+
+As part of React Strict Mode, certain lifecycle functions will be ran twice, such as functions passed to useState, useMemo, or useReducer, or the whole body of a functional component, which might include your useEffect hook. This is done by intentionally double-invoking the following functions:
+
+`Class component constructor, render, and shouldComponentUpdate methods Class component static getDerivedStateFromProps method Function component bodies State updater functions (the first argument to setState) Functions passed to useState, useMemo, or useReducer`
+
 ### Introducing Loading State
 
 A loading state flag (`loading`) was introduced using the `useState` hook to indicate when an API call is in progress.
