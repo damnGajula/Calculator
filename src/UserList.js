@@ -4,20 +4,27 @@ import axios from 'axios';
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const tableHeaders = ["ID", "Email", "First Name", "Last Name", "Avatar"];
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Effect executed");
     const fetchUsers = async () => {
       try {
+        setLoading(true);
         const response = await axios.get('https://reqres.in/api/users?page=1&per_page=6');
         setUsers(response.data.data);
       } catch (error) {
         console.error('Error fetching users: ', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchUsers();
   }, []);
+
+//   if (loading) {
+//     return <div>Loading...</div>; // Render a loading indicator while data is being fetched
+//   }
 
   return (
     <div>
