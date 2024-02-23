@@ -8,7 +8,11 @@ The `UserList` component performs the following tasks:
 
 1. **State Management**: Manages the state of the user data using the `useState` hook. The `users` state variable holds an array of user objects.
 
-2. **Data Fetching**: Utilizes the `useEffect` hook to perform a side effect, which is fetching the user data from the API when the component mounts. The `fetchUsers` function, an asynchronous function, uses Axios to make a GET request to the API endpoint (`https://reqres.in/api/users?page=1&per_page=6`). Upon successful retrieval of the data, it updates the `users` state with the response data.
+2. **Data Fetching**: Utilizes the `useEffect` hook to perform a side effect, which is fetching the user data from the API when the component mounts. The `fetchUsers` function, used for a GET request to the API endpoint (`https://reqres.in/api/users?page=1&per_page=6`). If successful, it updates the `users` state with the response data.
+
+3. **Pagination**: `page` and `totalPages` manage the current page number and the total number of pages, respectively. Pagination buttons ("Previous" and "Next") were configured to be disabled in certain scenarios:
+- The "Previous" button is disabled when the current page is the first page (page number <= 1).
+- The "Next" button is disabled when the current page is the last page (page number >= total number of pages).
 
 ## Changes Made
 

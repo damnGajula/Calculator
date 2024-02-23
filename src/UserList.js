@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const tableHeaders = ["ID", "Email", "First Name", "Last Name", "Avatar"];
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -25,6 +28,22 @@ const UserList = () => {
 //   if (loading) {
 //     return <div>Loading...</div>; // Render a loading indicator while data is being fetched
 //   }
+
+    const handlePreviousClick = () => {
+        if (page > 1) {
+        setPage(prevPage => prevPage - 1);
+        }
+    };
+
+    const handleNextClick = () => {
+        setPage(prevPage => prevPage + 1);
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+
 
   return (
     <div>
@@ -49,6 +68,10 @@ const UserList = () => {
           ))}
         </tbody>
       </table>
+      <div>
+        <button onClick={handlePreviousClick} disabled={page <= 1}>Previous</button>
+        <button onClick={handleNextClick} disabled={page >= totalPages}>Next</button>
+      </div>
     </div>
   );
 };
