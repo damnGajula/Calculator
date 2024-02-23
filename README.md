@@ -35,3 +35,19 @@ A loading state flag (`loading`) was introduced using the `useState` hook to ind
 
 ```jsx
 const [loading, setLoading] = useState(true);
+```
+
+```jsx
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('https://reqres.in/api/users?page=1&per_page=6');
+        setUsers(response.data.data);
+      } catch (error) {
+        console.error('Error fetching users: ', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+```
