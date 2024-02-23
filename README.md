@@ -19,7 +19,7 @@ The `UserList` component performs the following tasks:
         <button onClick={handlePreviousClick} disabled={page <= 1}>Previous</button>
         <button onClick={handleNextClick} disabled={page >= totalPages}>Next</button>
       </div>
-
+```
 
 ## Changes Made
 
