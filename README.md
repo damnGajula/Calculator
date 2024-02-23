@@ -51,3 +51,9 @@ const [loading, setLoading] = useState(true);
       }
     };
 ```
+### Update Pagination
+
+Updated get response
+```jsx
+        const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
+```
