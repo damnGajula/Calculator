@@ -14,6 +14,12 @@ The `UserList` component performs the following tasks:
 - The "Previous" button is disabled when the current page is the first page (page number <= 1).
 - The "Next" button is disabled when the current page is the last page (page number >= total number of pages).
 
+```jsx
+      <div>
+        <button onClick={handlePreviousClick} disabled={page <= 1}>Previous</button>
+        <button onClick={handleNextClick} disabled={page >= totalPages}>Next</button>
+      </div>
+
 ## Changes Made
 
 ### Cause of Api calling twice
