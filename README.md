@@ -20,6 +20,7 @@ The `UserList` component performs the following tasks:
         <button onClick={handleNextClick} disabled={page >= totalPages}>Next</button>
       </div>
 
+
 ## Changes Made
 
 ### Cause of Api calling twice
