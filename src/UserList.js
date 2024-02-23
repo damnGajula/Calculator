@@ -6,6 +6,7 @@ const UserList = () => {
   const tableHeaders = ["ID", "Email", "First Name", "Last Name", "Avatar"];
 
   useEffect(() => {
+    console.log("Effect executed");
     const fetchUsers = async () => {
       try {
         const response = await axios.get('https://reqres.in/api/users?page=1&per_page=6');
@@ -25,7 +26,7 @@ const UserList = () => {
         <thead>
             <tr>
                 {tableHeaders.map(item => (
-                <th>{item}</th>
+                <th> key={item}</th>
                 ))}
             </tr>
         </thead>
