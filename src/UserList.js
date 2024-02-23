@@ -13,8 +13,9 @@ const UserList = () => {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('https://reqres.in/api/users?page=1&per_page=6');
+        const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
         setUsers(response.data.data);
+        setTotalPages(response.data.total_pages);
       } catch (error) {
         console.error('Error fetching users: ', error);
       } finally {
@@ -23,7 +24,7 @@ const UserList = () => {
     };
 
     fetchUsers();
-  }, []);
+  }, [page]);
 
 //   if (loading) {
 //     return <div>Loading...</div>; // Render a loading indicator while data is being fetched
