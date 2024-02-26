@@ -21,6 +21,9 @@ The `UserList` component performs the following tasks:
       </div>
 ```
 
+4. **Caching Solution**: To store previously fetched user data and avoid repeating API calls when navigating between pages. Data is being stored in the `usersCache` object with the page number as the key.
+The `handlePreviousClick` and `handleNextClick` functions check if the requested page data is already cached. If cached data exists, it is used directly without making an additional API call, improving performance and reducing network overhead.
+
 ## Changes Made
 
 ### Cause of Api calling twice
@@ -28,12 +31,6 @@ The `UserList` component performs the following tasks:
 As part of React Strict Mode, certain lifecycle functions will be ran twice, such as functions passed to useState, useMemo, or useReducer, or the whole body of a functional component, which might include your useEffect hook. This is done by intentionally double-invoking the following functions:
 
 `Class component constructor, render, and shouldComponentUpdate methods Class component static getDerivedStateFromProps method Function component bodies State updater functions (the first argument to setState) Functions passed to useState, useMemo, or useReducer`
-
-### Caching Solution
-
-caching mechanism to store previously fetched user data and avoid repeating API calls when navigating between pages. Data is being stored in the `usersCache` object with the page number as the key.
-The `handlePreviousClick` and `handleNextClick` functions check if the requested page data is already cached. If cached data exists, it is used directly without making an additional API call, improving performance and reducing network overhead.
-
 
 ### Solution: Introducing Loading State
 
@@ -59,7 +56,7 @@ const [loading, setLoading] = useState(true);
 ```
 ### Update Pagination
 
-Updated get response
+Fixed a bug where api was been called and response was only getting response from page 1
 ```jsx
         const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
 ```
