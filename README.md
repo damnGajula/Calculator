@@ -29,6 +29,12 @@ As part of React Strict Mode, certain lifecycle functions will be ran twice, suc
 
 `Class component constructor, render, and shouldComponentUpdate methods Class component static getDerivedStateFromProps method Function component bodies State updater functions (the first argument to setState) Functions passed to useState, useMemo, or useReducer`
 
+### Caching Solution
+
+caching mechanism to store previously fetched user data and avoid repeating API calls when navigating between pages. Data is being stored in the `usersCache` object with the page number as the key.
+The `handlePreviousClick` and `handleNextClick` functions check if the requested page data is already cached. If cached data exists, it is used directly without making an additional API call, improving performance and reducing network overhead.
+
+
 ### Solution: Introducing Loading State
 
 A loading state flag (`loading`) was introduced using the `useState` hook to indicate when an API call is in progress.

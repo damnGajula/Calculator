@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 
@@ -7,15 +7,24 @@ const UserList = () => {
   const tableHeaders = ["ID", "Email", "First Name", "Last Name", "Avatar"];
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const totalPagesRef = useRef(1);
+  const usersCache = useRef({});
+
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
-        setUsers(response.data.data);
-        setTotalPages(response.data.total_pages);
+
+        if (usersCache.current[page]) {
+          setUsers(usersCache.current[page]);
+        } else {
+          const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
+          const fetchedUsers = response.data.data;
+          usersCache.current[page] = fetchedUsers;
+          setUsers(fetchedUsers);
+          totalPagesRef.current = response.data.total_pages;
+        }
       } catch (error) {
         console.error('Error fetching users: ', error);
       } finally {
@@ -26,23 +35,21 @@ const UserList = () => {
     fetchUsers();
   }, [page]);
 
-//   if (loading) {
-//     return <div>Loading...</div>; // Render a loading indicator while data is being fetched
-//   }
-
-    const handlePreviousClick = () => {
-        if (page > 1) {
-        setPage(prevPage => prevPage - 1);
-        }
-    };
-
-    const handleNextClick = () => {
-        setPage(prevPage => prevPage + 1);
-    };
-
-    if (loading) {
-        return <div>Loading...</div>;
+  const handlePreviousClick = () => {
+    if (page > 1) {
+      setPage(prevPage => prevPage - 1);
     }
+  };
+
+  const handleNextClick = () => {
+    if (page < totalPagesRef.current) {
+      setPage(prevPage => prevPage + 1);
+    }
+  };
+
+  if (loading) {
+      return <div>Loading...</div>;
+  }
 
 
 
@@ -71,7 +78,7 @@ const UserList = () => {
       </table>
       <div>
         <button onClick={handlePreviousClick} disabled={page <= 1}>Previous</button>
-        <button onClick={handleNextClick} disabled={page >= totalPages}>Next</button>
+        <button onClick={handleNextClick} disabled={page >= totalPagesRef.current}>Next</button>
       </div>
     </div>
   );
