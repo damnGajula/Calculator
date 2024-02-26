@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const tableHeaders = ["ID", "Email", "First Name", "Last Name", "Avatar"];
+  // const tableHeaders = ["ID", "Email", "First Name", "Last Name", "Avatar"];
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const totalPagesRef = useRef(1);
