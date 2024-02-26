@@ -11,22 +11,29 @@ const UserList = () => {
   const usersCache = useRef({});
 
 
-
   useEffect(() => {
-    console.log('worked on fetching');
+    console.log('worked fetching users');
+    
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
-        setUsers(response.data.data);
-        setTotalPages(response.data.total_pages);
+
+        if (usersCache.current[page]) {
+          setUsers(usersCache.current[page]);
+        } else {
+          const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
+          const fetchedUsers = response.data.data;
+          usersCache.current[page] = fetchedUsers;
+          setUsers(fetchedUsers);
+          totalPagesRef.current = response.data.total_pages;
+        }
       } catch (error) {
         console.error('Error fetching users: ', error);
       } finally {
         setLoading(false);
       }
     };
-
+    
     fetchUsers();
   }, [page]);
 
