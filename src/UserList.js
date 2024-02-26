@@ -53,7 +53,7 @@ const UserList = () => {
         <thead>
             <tr>
                 {tableHeaders.map(item => (
-                <th> key={item}</th>
+                <th>{item}</th>
                 ))}
             </tr>
         </thead>
