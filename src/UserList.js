@@ -33,8 +33,9 @@ const UserList = () => {
         setLoading(false);
       }
     };
-
-    fetchUsers();
+    if (page !== 1) {
+      fetchUsers();
+    }
   }, [page]);
 
   const handlePreviousClick = () => {
