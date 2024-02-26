@@ -66,7 +66,7 @@ const UserList = () => {
                 ))}
             </tr> */}
             <tr>
-              <th style={{ width: '10%' }}>ID</th> {/* Set explicit width for table headers */}
+              <th style={{ width: '10%' }}>ID</th>
               <th style={{ width: '20%' }}>Email</th>
               <th style={{ width: '20%' }}>First Name</th>
               <th style={{ width: '20%' }}>Last Name</th>
