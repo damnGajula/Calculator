@@ -60,3 +60,10 @@ Fixed a bug where api was been called and response was only getting response fro
 ```jsx
         const response = await axios.get(`https://reqres.in/api/users?page=${page}&per_page=6`);
 ```
+
+### Addressing CLS
+
+- **Minimum Size**: A minimum height and width were applied to the component
+- **Fixed Table Layout**: to prevent resizing of columns
+- **Explicit Widths**: Fixec widths were applied to table headers
+- **Image Sizes**

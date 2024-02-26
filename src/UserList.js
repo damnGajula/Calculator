@@ -12,6 +12,8 @@ const UserList = () => {
 
 
   useEffect(() => {
+    console.log('worked fetching users');
+    
     const fetchUsers = async () => {
       try {
         setLoading(true);
@@ -54,14 +56,21 @@ const UserList = () => {
 
 
   return (
-    <div>
+    <div style={{ minHeight: '200px', minWidth: '400px' }}>
       <h1>User List</h1>
-      <table>
+      <table style={{ width: '100%', tableLayout: 'fixed' }} >
         <thead>
-            <tr>
+            {/* <tr>
                 {tableHeaders.map(item => (
                 <th>{item}</th>
                 ))}
+            </tr> */}
+            <tr>
+              <th style={{ width: '10%' }}>ID</th> {/* Set explicit width for table headers */}
+              <th style={{ width: '20%' }}>Email</th>
+              <th style={{ width: '20%' }}>First Name</th>
+              <th style={{ width: '20%' }}>Last Name</th>
+              <th style={{ width: '30%' }}>Avatar</th>
             </tr>
         </thead>
         <tbody>
